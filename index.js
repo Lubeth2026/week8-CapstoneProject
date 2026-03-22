@@ -14,7 +14,7 @@ async function getKey() {
             headers: { "Content-Type": "application/json" },
             method: "POST",
         };
-        const res = await fetch("https://proxy-key-t0ox.onrender.com/get-key2", options);
+        const res = await fetch("https://proxy-key-t0ox.onrender.com/get-key", options);
 
         if(!res.ok){
             throw new Error("Bad")
@@ -46,18 +46,28 @@ async function getTheAPI(url, options) {
 }
 //End of Workers API Function//
 
+//Render Workers AI Response to the DOM//
+function render(response){
+    output.textContent = ""
+    const p = document.createElement("p");
+    p.textContent = response
+    output.appendChild(p)
+}
+//End of Render Workers AI API//
+
 async function main() {
     try {
         informationArea.addEventListener("submit", async(event)=>{
         event.preventDefault()
+
         const key = await getKey()
         const corsURL = "https://corsproxy.io/?url="; 
         const workersEndpoint = "https://api.cloudflare.com/client/v4/accounts/82bd1d2acadf816a51be4a65b1c64317/ai/run/@cf/meta/llama-3-8b-instruct";
         const url = corsURL + workersEndpoint
         const promptBody = {
           messages: [
-            { role: "system", content: "You are a used car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 chevy silverado, color white, with 20,000 miles, no accidents, also 2021 nissan rogue, color black, with 70,000 miles no accidents. Two sedans a 2019 nissan altima, color white, 60,000 miles with no accidents, also a 2019 hyundai accent, color black, with 10,000 nothing wrong with it. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
-            { role: "user", content: "What products do you sell? "},
+            { role: "system", content: "You are a used car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 chevy silverado, color white, with 600 miles, also 2021 nissan rogue, color black, with 70,000 miles. Two sedans a 2019 nissan altima, color white, 60,000 miles, also a 2019 hyundai accent, color black, with 10,000 nothing wrong with it. The 2026 is pretty new, the other vehicles no accidents listed, nor on CarFax Report. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
+            { role: "user", content: prompt.value },
           ],
         };
         const options = {
@@ -65,9 +75,8 @@ async function main() {
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
             body: JSON.stringify(promptBody),
         };
-        //const {response} = await getTheAPI(url, options);
-        const response = "";
-        console.log(response)
+        const {response} = await getTheAPI(url, options);
+        render(response)
     })
     } catch (error) {
         console.log(error)
