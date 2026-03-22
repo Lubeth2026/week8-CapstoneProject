@@ -53,9 +53,13 @@ async function getTheAPI(url, options) {
 
 //Render Workers AI Response to the DOM//
 //
-function render(response){
-    output.textContent = ""
+function render(response, isBot){
     const p = document.createElement("p");
+    if(isBot){
+    p.className = "max-w-[75%] mr-auto rounded-lg bg-gray-300 px-2 py-2 text-black";
+    }else{
+    p.className = "max-w[75%] ml-auto rounded-lg bg-blue-600 px-2 py-2 text-white";
+    }
     p.textContent = response
     output.appendChild(p)
 }
@@ -65,7 +69,7 @@ async function main() {
 //AI can see all of the messages being typed NOW//
 //Messages outside the eventListener will NOT be over written every time you click the button//
     const messages = [
-            { role: "system", content: "You are a car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 Chevy Silverado, color white, with 600 miles, also 2021 Nissan Rogue, color black, with 40,000 miles. Two sedans a 2019 Nissan Altima, color white, 25,000 miles, also a 2019 Hyundai Accent, color black, with 10,000 nothing wrong with it, the 2026 is pretty new, the other vehicles no accidents listed. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
+            { role: "system", content: "You are a car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 Chevy Silverado, color white, with 600 miles, also 2021 Nissan Rogue, color black, with 40,000 miles. Two sedans a 2019 Nissan Altima, color white, 25,000 miles, also a 2019 Hyundai Accent, color black, with 10,000 nothing wrong with it, the 2026 is pretty new, the other vehicles no accidents listed. We are located in Greenville, SC, open Monday through Friday from 8am to 5pm. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
           ];
     try {
         informationArea.addEventListener("submit", async(event)=>{
@@ -90,7 +94,8 @@ async function main() {
         const {response} = await getTheAPI(url, options);
 //AI Agents Response//
         messages.push({ role: "assistant", content: response })
-        render(response)
+        render(prompt.value, false)
+        render(response, true)
     })
     } catch (error) {
         console.log(error)
