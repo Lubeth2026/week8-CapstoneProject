@@ -8,27 +8,30 @@
     <script src="index.js" defer></script>
 
 </head>
-<body>
+<body class="min-h-screen bg-red-300">
     <header>
         <h1>Capstone Level 2 Project</h1>
     </header>
+
     <main>
-        <h2>Used Car Sales Event!!</h2>
+        <div class="fixed bottom-5 right-5 w-70 bg-white rounded-lg">
+        <header class=" flex items-center justify-between border-b border-blue-300 px-4 py-2">
+            <h2>Friendly Assistant</h2>
+            <span id="time">2m ago</span>
+        </header>
         <output>
-            <div id="output"></div>
+            <div class="h-[300px] overflow-auto space-y-3" id="output"></div>
+            <p class="max-w[75%] ml-auto rounded-lg bg-blue-600 px-2 py-2 text-white">Hey, I am looking for a car!</p>
+            <p class="max-w-[75%] mr-auto rounded-lg bg-gray-300 px-2 py-2 text-black">I can sell things!</p>
         </output>
-        <section>
-            <form id="informationArea">
-                <label for="prompt">
-                    Hello, what can I assist you with today?
-                    <textarea name="prompt" id="prompt" cols="100" rows="10"></textarea>
-                    <button>Send</button>
-                </label>
+        <footer>
+            <form class="flex gap-2 border-t border-blue-300" id="informationArea">
+                    <input class="border-blue-600 border rounded-md px-2 py-2" type="text" name="prompt" id="prompt"></input>
+                    <button class="rounded-md bg-blue-600 text-white px-4">Send</button> 
             </form>
-        </section>
-    </main>
-    <footer>
+        </footer>
+        </div>
         <p>Copyright Lubeth 2026 &copy;</p>
-    </footer>
+    </main>
 </body>
 </html>

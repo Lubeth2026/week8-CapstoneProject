@@ -3,6 +3,7 @@
 console.log("Hello Everyone!");
 
 const output = document.getElementById("output");
+output.scrollTop = output.scrollHeight;
 const informationArea = document.getElementById("informationArea");
 const prompt = document.getElementById("prompt");
 
@@ -64,7 +65,7 @@ async function main() {
 //AI can see all of the messages being typed NOW//
 //Messages outside the eventListener will NOT be over written every time you click the button//
     const messages = [
-            { role: "system", content: "You are a used car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 Chevy Silverado, color white, with 600 miles, also 2021 Nissan Rogue, color black, with 40,000 miles. Two sedans a 2019 Nissan Altima, color white, 25,000 miles, also a 2019 Hyundai Accent, color black, with 10,000 nothing wrong with it, the 2026 is pretty new, the other vehicles no accidents listed. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
+            { role: "system", content: "You are a car sales rep, trying to make sales on four vehicles, one truck, one suv, and two sedans. A 2026 Chevy Silverado, color white, with 600 miles, also 2021 Nissan Rogue, color black, with 40,000 miles. Two sedans a 2019 Nissan Altima, color white, 25,000 miles, also a 2019 Hyundai Accent, color black, with 10,000 nothing wrong with it, the 2026 is pretty new, the other vehicles no accidents listed. You do not go off topic, you only tell the products or info about what a product is. Never respond with more than 15 words, and never list every single product, perhaps ask a question."},
           ];
     try {
         informationArea.addEventListener("submit", async(event)=>{
