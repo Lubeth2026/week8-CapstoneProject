@@ -60,9 +60,9 @@ async function getTheAPI(url, options) {
 function render(response, isBot){
     const p = document.createElement("p");
     if(isBot){
-    p.className = "max-w-[75%] mr-auto rounded-lg bg-gray-300 px-2 py-2 text-black";
+    p.className = "max-w-[75%] mr-auto rounded-lg bg-gray-300 px-3 py-2 text-black";
     }else{
-    p.className = "max-w[75%] ml-auto rounded-lg bg-blue-600 px-2 py-2 text-white";
+    p.className = "max-w-[75%] ml-auto rounded-lg bg-blue-600 px-3 py-2 text-white";
     }
     p.textContent = response
     output.appendChild(p)
