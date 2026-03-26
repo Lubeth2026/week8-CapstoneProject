@@ -5,7 +5,7 @@ console.log("Hello Everyone!");
 //Global Variables//
 const output = document.getElementById("output");
 output.scrollTop = output.scrollHeight;
-//Global Variables for the Collapsible Chatbox in the DOM//
+//Global Variables for the Collapsible Chatbot in the DOM//
 const chatHeader = document.getElementById("chatHeader");
 const chatWindow = document.getElementById("chatWindow");
 const informationArea = document.getElementById("informationArea");
@@ -101,7 +101,7 @@ async function main() {
         render(prompt.value, false)
         render(response, true)
     })   
-//Collapsible Chatbox Transition//
+//Collapsible Chatbot Transition//
         let isOpen = true
         chatHeader.addEventListener("click", ()=>{
             isOpen = !isOpen
@@ -119,3 +119,5 @@ async function main() {
     }
 }
 main();
+
+//Mr.Benson has reviewed this code with me 3/25/26//
